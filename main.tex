@@ -1,0 +1,60 @@
+% !TeX program = lualatex
+% Hauptdatei für Wahlausschuss-Stimmzettel
+
+\documentclass[
+paper=a4,
+fontsize=11pt,
+DIV=11,
+parskip=half
+]{scrbook}
+
+% Zentrale CI-Konfiguration
+\input{../CI/latex/config.tex}
+
+% Nur die benötigten Tabellen-Pakete
+\usepackage{array}
+\usepackage{booktabs}
+
+\renewcommand{\arraystretch}{1.2}
+
+\newlength{\NameColW}\setlength{\NameColW}{0.58\linewidth}
+\newlength{\BoxColW}\setlength{\BoxColW}{0.14\linewidth}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}p{\NameColW}}
+\newcolumntype{C}{>{\centering\arraybackslash}p{\BoxColW}}
+
+\newcommand{\checkbox}{\fbox{\rule{0pt}{1.2em}\rule{1.2em}{0pt}}}
+\newcommand{\CandidateRow}[1]{#1 & \checkbox & \checkbox & \checkbox \\}
+
+\newcommand{\BallotHead}[1]{%
+	\toprule
+	\textbf{#1} & \textbf{Ja} & \textbf{Nein} & \textbf{Enthaltung} \\
+	\midrule
+}
+
+\renewcommand{\seitenbalkenFooterText}{%
+	\thepage\\
+	Wahlausschuss von\\
+	Mensa in Deutschland e.V.\\
+	Rodinger Straße 19, 93413 Cham\\
+	Registergericht: Köln, VR 8190
+}
+
+
+\newenvironment{BallotTable}[1]{%
+	\noindent\begin{tabular}{LCCC}
+		\BallotHead{#1}
+	}{%
+		\bottomrule
+	\end{tabular}\par\vspace{0.2em}
+}
+
+\pagestyle{empty}
+
+\begin{document}
+	\pagestyle{empty} % alles, was CI evtl. setzt, hier überschreiben
+	\seitenbalken
+	\wortbildmarke
+	\vspace*{10mm}      % <-- Platz für die Wortbildmarke
+	\input{content/stimmzettel.tex}
+\end{document}
