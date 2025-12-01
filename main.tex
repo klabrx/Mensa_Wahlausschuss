@@ -25,7 +25,7 @@ parskip=half
 
 \newcommand{\checkbox}{\fbox{\rule{0pt}{1.2em}\rule{1.2em}{0pt}}}
 \newcommand{\CandidateRow}[1]{#1 & \checkbox & \checkbox & \checkbox \\}
-
+ % alles, was CI evtl. setzt, hier überschreiben
 \newcommand{\BallotHead}[1]{%
 	\toprule
 	\textbf{#1} & \textbf{Ja} & \textbf{Nein} & \textbf{Enthaltung} \\
@@ -38,7 +38,7 @@ parskip=half
 % Nennung auf dem Stimmzettel soll es nur für die kandidierenden
 % Personen geben.
 \renewcommand{\seitenbalkenFooterText}{%
-	\thepage\\
+
 	Wahlausschuss von\\
 	Mensa in Deutschland e.V.\\
 	Rodinger Straße 19, 93413 Cham\\
@@ -57,7 +57,9 @@ parskip=half
 \pagestyle{empty}
 
 \begin{document}
-	\pagestyle{empty} % alles, was CI evtl. setzt, hier überschreiben
+	\thispagestyle{empty}
+	\pagestyle{empty}
+	\clearpairofpagestyles
 	\seitenbalken
 	\wortbildmarke
 	\vspace*{10mm}      % <-- Platz für die Wortbildmarke
