@@ -32,6 +32,11 @@ parskip=half
 	\midrule
 }
 
+% Der Wahlausschuss verwendet auf dem Stimmzettel bewusst nicht den
+% Standardfooter mit Hinweisen auf die Vorstandsmitglieder, da diese
+% ja ggf. auch selber zur (Wieder-)wahl stehen könnten ... namentliche
+% Nennung auf dem Stimmzettel soll es nur für die kandidierenden
+% Personen geben.
 \renewcommand{\seitenbalkenFooterText}{%
 	\thepage\\
 	Wahlausschuss von\\
@@ -56,5 +61,11 @@ parskip=half
 	\seitenbalken
 	\wortbildmarke
 	\vspace*{10mm}      % <-- Platz für die Wortbildmarke
+
+	% ==============================================================
+	% und hier kommt endlich der eigentliche Stimmzettel, abgeholt
+	% aus der referenzierten Datei
 	\input{content/stimmzettel.tex}
+	% ==============================================================
+	
 \end{document}
